@@ -1,0 +1,443 @@
+/*
+==============
+Variables
+==============
+*/
+
+:root {
+  --primaryColor: #f15025;
+  --mainBlack: #222;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --darkGrey: #afafaf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.2rem;
+}
+
+/*
+============
+Global styles
+============
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+  font-family: 'Fira Code', monospace;
+  color: var(--mainBlack);
+  background-color: var(--mainWhite);
+  line-height: 1.5;
+}
+
+a{
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 1.25rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  margin-bottom: 0;
+}
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+/* button */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  border: 3px solid var(--primaryColor);
+  color: var(--primaryColor);
+  margin: 3rem;
+  transition: var(--mainTransition);
+}
+.btn:hover {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+}
+
+/*
+============
+Main Navbar
+============
+
+*/
+
+.main-navbar{
+  background-color: var(--darkGrey);
+  padding: 0 2rem;
+}
+.main-navbar li{
+  list-style: none;
+}
+
+.main-navbar a {
+  text-transform: capitalize;
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--primaryColor);
+  letter-spacing: var(--mainSpacing);
+  transition: var(--mainTransition);
+}
+
+.main-navbar a:hover {
+ color: var(--mainBlack);
+}
+
+@media (min-width: 992px) {
+  .main-navbar ul {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .main-navbar a {
+    text-align: center;
+  }
+}
+
+/*
+==============
+Hero Banner
+==============
+*/
+
+.hero-header {
+  min-height: 80vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+}
+
+
+
+.hero-banner p {
+  width: 80%;
+  max-width: 560px;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .hero-banner {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+ .hero-header {
+  background: linear-gradient(rgba(241, 80, 37, 0.75), rgba(0, 0, 0, 0.75)),   url("./images/image-2.jpeg") center/cover fixed no-repeat;
+ }
+}
+
+/*
+===========
+Cards
+===========
+*/
+
+.title {
+  text-align: center;
+}
+
+.cards {
+  padding: 4rem 0;
+}
+
+.cards-center {
+  width: 80vw;
+  max-width: 1170px;
+  margin: 2rem auto;
+}
+
+.card {
+  border: 1px solid var(--darkGrey);
+  margin: 3rem 0;
+}
+
+.card-info {
+  padding: 1rem;
+}
+
+.card-footer {
+  background-color: var(--darkGrey);
+  padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+
+}
+
+.card-footer span {
+  color: var(--primaryColor);
+}
+/*
+Media Query Technique
+@media (min-width: 768px) {
+ .cards-center {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   column-gap: 2rem;
+ }
+}
+
+@media (min-width: 1024px) {
+.cards-center {
+   grid-template-columns: 1fr 1fr 1fr;
+
+ }
+}
+*/
+
+
+/*
+Grid Column set up calculation - Responsiveness set up using grid technique
+
+max-width: 1170
+total column gap: 64
+total number of columns that you want to set up: 3
+each column gap is : 32px, so total column gap is 64px
+==================================================
+Each Column Width setup = (1170 - 64) / 3 = 368.667
+
+*/
+
+.cards-center {
+  display: grid;
+  column-gap: 2rem;
+  //grid-template-columns: repeat(auto-fit, minmax(368px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+/*
+==========
+Tiles
+==========
+
+*/
+
+.tiles{
+  padding: 4rem 0;
+}
+
+.tiles-center {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 2rem auto;
+  display: grid;
+  grid-row-gap: 2rem;
+}
+
+@media (min-width: 768px) {
+ .tiles-center {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+ }
+}
+
+@media (min-width: 992px) {
+ .tiles-center {
+   grid-template-columns: repeat(3, 1fr);
+ }
+}
+
+@media (min-width: 1170px) {
+
+   .tiles-center img {
+     height: 100%;
+     object-fit: cover;
+   }
+   .tiles-center {
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: repeat(5, 200px);
+     grid-template-areas:
+     "t1 t1 t1 t2"
+     "t1 t1 t1 t3"
+     "t4 t4 t4 t4"
+     "t5 t6 t6 t6"
+     "t5 t7 t8 t9"
+     ;
+   }
+
+   .tile-1 {
+     grid-area: t1;
+   }
+
+   .tile-2 {
+     grid-area: t2;
+   }
+   .tile-3 {
+    grid-area: t3;
+  }
+  .tile-4 {
+    grid-area: t4;
+  }
+  .tile-5 {
+    grid-area: t5;
+  }
+  .tile-6 {
+    grid-area: t6;
+  }
+
+  .tile-7 {
+    grid-area: t7;
+  }
+
+  .tile-8 {
+    grid-area: t8;
+  }
+
+  .tile-9 {
+    grid-area: t9;
+  }
+
+}
+
+/*
+================
+Layout CSS
+================
+
+*/
+
+.header {
+  padding: 0.5rem;
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+  text-align: center;
+}
+
+.navbar {
+  background-color: var(--darkGrey);
+  padding: 0.5rem;
+}
+
+.navbar ul {
+  list-style-type: none;
+}
+
+.navbar a {
+  color: var(--mainBlack);
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  transition: var(--mainSpacing);
+}
+
+.navbar a:hover {
+  color: var(--mainWhite);
+}
+
+.main-content {
+  padding: 2rem;;
+}
+
+.sidebar {
+  background-color: var(--primaryColor);
+  color: var(--mainWhite);
+  padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
+.footer {
+  background-color: var(--mainBlack);
+  color: var(--mainWhite);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.footer p {
+ font-size: 1rem;
+}
+
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+@media (min-width: 768px) {
+ .navbar ul{
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   justify-items: center;
+ }
+}
+
+@media (min-width: 992px) {
+  .main{
+    grid-template-columns: [start] 200px [col-1-end] 1fr [col-2-end] 80px [end];
+    grid-template-rows: [start] auto [row-1-end] 1fr [row-2-end] auto [end];
+  }
+
+  .header {
+    grid-column: start/end;
+    grid-row: start/row-1-end;
+  }
+
+  .navbar {
+    grid-column: start/col-1-end;
+    grid-row: row-1-end/row-2-end;
+  }
+
+  .main-content {
+    grid-column: col-1-end/col-2-end;
+    grid-row: row-1-end/row-2-end;
+  }
+
+  .sidebar {
+    grid-column: col-2-end/end;
+    grid-row: row-1-end/row-2-end;
+  }
+
+  .footer{
+    grid-column: start/end;
+    grid-row: row-2-end/end;
+  }
+
+  .navbar ul {
+    grid-template-columns: 1fr;
+    min-height: 100%;
+    align-items: center;
+  }
+
+  .sidebar{
+    grid-template-columns: 1fr;
+    min-height: 100%;
+    align-items: center;
+    background-color: var(--darkGrey);
+  }
+}
